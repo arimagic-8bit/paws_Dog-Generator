@@ -29,12 +29,24 @@
             <span>SEARCHBAR</span>
         </p>
         <form action="">
-            <input type="text" name="search" placeholder="Write a dog breed">
-        </form>
-        <button type="submit">RANDOM</button>
-        <div class="dog-img">
+            <input type="text" name="search" id="search" placeholder="Write a dog breed">
 
+            <label for="select">How many photos do you want?</label>
+            <select name="select" id="select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+
+            <button class="search-btn">Search</button>
+        </form>
+        <button class="random-button">RANDOM</button>
+        <div class="dog-img">
         </div>
     </div>
+    <script src="javascript/dogApi.js"></script>
 </body>
 </html>
