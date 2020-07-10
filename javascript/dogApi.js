@@ -1,5 +1,6 @@
 
 const randomButton = document.querySelector('.random-button');
+const searchButton = document.querySelector('.search-btn')
 
 function getRandomPhoto() {
 
@@ -22,10 +23,14 @@ function getRandomPhoto() {
         image.classList.add('photo');
         div.appendChild(image)
     })
-    .catch((err) => {console.log('Request error')})
+    .catch((err) => {console.log('Request error', err)})
 }
 
-function getPhotosByBreed() {
+function getPhotosByBreed(e) {
+
+    e.preventDefault()
+
+    console.log('heyyy')
 
     const searchValue = document.querySelector('#search').value;
     const selectValue = document.querySelector('#select').value;
@@ -33,7 +38,7 @@ function getPhotosByBreed() {
     const div = document.querySelector(".dog-img");
 
     if(div.hasChildNodes()) {
-        div.removeChild(div.childNodes);
+        div.innerHTML = '';
     }
 
     fetch(`https://dog.ceo/api/breed/${searchValue}/images/random/${selectValue}`)
@@ -42,18 +47,20 @@ function getPhotosByBreed() {
     })
     .then((data) => {
         data.message.forEach(photo => {
-          const div = document.createElement('div');
-            div.innerHTML = `
+          const newDiv = document.createElement('div');
+          newDiv.innerHTML = `
             <div>
                 <img src="${photo}" alt="Dog photo" />
             </div>
         `;  
+        div.appendChild(newDiv);
         });
-        
     })
+    .catch((err) => {console.log('Request error', err)})
 }
 
 
 
 
 randomButton.onclick = getRandomPhoto;
+searchButton.onclick = getPhotosByBreed;
